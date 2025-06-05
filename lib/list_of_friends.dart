@@ -28,7 +28,7 @@ class ListOfFriends {
   }
 
   void previousPage() {
-    if (_friendsNumber < _noOfFriends.length + 1) {
+    if (_friendsNumber > 0) {
       _friendsNumber--;
     }
   }
