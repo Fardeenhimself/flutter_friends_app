@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'list_of_friends.dart';
+
+ListOfFriends listOfFriends = ListOfFriends();
 
 void main() => runApp(FriendsApp());
 
@@ -43,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/img1.png'),
+                    backgroundImage: AssetImage(listOfFriends.getImagePath()),
                     radius: 70.0,
                   ),
                 ),
@@ -54,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Elliot Alderson',
+                      listOfFriends.getName(),
                       style: TextStyle(fontSize: 30.0, fontFamily: 'GSans'),
                     ),
                     Row(
@@ -62,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                         Icon(Icons.email, size: 15.0),
                         SizedBox(width: 5.0),
                         Text(
-                          'logicBomb@hacker.mail',
+                          listOfFriends.getEmail(),
                           style: TextStyle(fontSize: 15.0),
                         ),
                       ],
@@ -87,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Text(
-                  'Elliot was born on September 17, 1986. He suffers from dissociative identity disorder, clinical depression, delusions and paranoia. His internal life is revealed via voice-overs that provide insight into his mental state, his opinions of the people he encounters and the activity around him. These dialogues with the audience are designed to help us interpret Elliot\'s world, but given his mental illness, he\'s an unreliable narrator, leaving us unsure whether what he tells us we\'re seeing is actually what is happening. Typical of this is when Elliot hears everyone around him refer to E-Corp as Evil Corp, reflecting his own opinion of the conglomerate.',
+                  listOfFriends.getAbout(),
                   style: TextStyle(fontSize: 20.0, fontFamily: 'GSans'),
                   textAlign: TextAlign.justify,
                 ),
@@ -101,7 +104,11 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(10.0),
                   child: TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.red),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        listOfFriends.previousPage();
+                      });
+                    },
                     child: Text(
                       'Previous',
                       style: TextStyle(
@@ -118,7 +125,11 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(10.0),
                   child: TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.red),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        listOfFriends.nextPage();
+                      });
+                    },
                     child: Text(
                       'Next',
                       style: TextStyle(
